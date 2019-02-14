@@ -38,7 +38,7 @@ We clipp the Critic weights to enforce a Lipschitz constraint.
 ```
 clip_weights = [p.assign(tf.clip_by_value(p, -0.01, 0.01)) for p in theta_d]
 ```
-We use RMSprop optimizer instead of Adam because RMSprop because Adam could cause instability in the training process.
+We use RMSprop optimizer instead of Adam because Adam could cause instability in the training process.
 
 # How to train the model
 Write in the console `python wgan.py` to train the model for generating 5 Gaussian distributions. The results will be saved for each epoch in the `tf_wgan_results` folder
