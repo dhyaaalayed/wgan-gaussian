@@ -30,14 +30,14 @@ it consists of an input layer of 2 neurons for the training data, 3 hidden layer
 The Wasserstein Distance is a well-known distance metric for probability distributions. It is sometimes called EarthMover’s Distance and is studied in the field of optimal transportation. It measures the optimal cost of transporting one distribution to another (Solomon et al., 2014). Actually, even when two distributions are located in a lower dimensional manifolds without overlaps, the Wasserstein distance can still provide a meaningful and smooth representation of the distance in-between. Meanwhile, other distance functions suffer from issues related to continuity. For example, the Kullback-Leibler divergence is infinity for two fully disjoint distributions. Another example is the Jensen-Shannon, which is not differentiable for fully overlapped cases i.e.: it has a sudden jump at zero distance. Thus, only the Wasserstein distance provides a smooth measure, which makes it really helpful for stable learning. Therefore, it is predestinated to solve the stability issue, which appears in normal GANs.
 
 # Wasserstein as GAN loss function
-<p><img style = "max-width:100%;" src="https://user-images.githubusercontent.com/26183913/52800359-e4d84480-307b-11e9-98e4-6b430dda39b9.png"></p>
+<p><img width = "350" src="https://user-images.githubusercontent.com/26183913/52800359-e4d84480-307b-11e9-98e4-6b430dda39b9.png"></p>
 
 ```
 d_loss = tf.reduce_mean(d_real - d_fake)
 g_loss = tf.reduce_mean(d_fake)
 ```
 We clipp the Critic weights to enforce a Lipschitz constraint.
-<p><img style = "max-width:100%;" src="https://user-images.githubusercontent.com/26183913/52800447-0f2a0200-307c-11e9-9d62-c914c8d95d94.png"></p>
+<p><img width = "390" src="https://user-images.githubusercontent.com/26183913/52800447-0f2a0200-307c-11e9-9d62-c914c8d95d94.png"></p>
 
 ```
 clip_weights = [p.assign(tf.clip_by_value(p, -0.01, 0.01)) for p in theta_d]
